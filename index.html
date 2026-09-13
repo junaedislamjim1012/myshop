@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyShop - Modern E-Commerce Platform</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col antialiased">
+
+  <!-- Live Notice Header -->
+  <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white text-xs md:text-sm py-2 px-4 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-800 text-white animate-pulse">
+          ● Live on GitHub Pages
+        </span>
+        <span>MyShop E-Commerce Static Preview & Documentation</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/junaedislamjim1012/myshop" target="_blank" class="underline hover:text-emerald-200 font-medium">
+          <i class="fab fa-github mr-1"></i> GitHub Repo
+        </a>
+        <a href="#deployment" class="hover:text-emerald-200 font-medium">
+          <i class="fas fa-server mr-1"></i> cPanel & Local Setup
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+          <i class="fas fa-shopping-bag"></i>
+        </div>
+        <div>
+          <span class="text-2xl font-extrabold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">MyShop</span>
+          <span class="block text-[10px] uppercase tracking-widest text-gray-500 font-semibold -mt-1">Online Store</span>
+        </div>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="hidden md:flex flex-1 max-w-md mx-4">
+        <div class="relative w-full">
+          <input type="text" id="searchInput" placeholder="Search products, gadgets, fashion..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm transition">
+          <i class="fas fa-search absolute left-3.5 top-3.5 text-gray-400"></i>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+        <button onclick="toggleCart()" class="relative p-2.5 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition">
+          <i class="fas fa-shopping-cart text-xl"></i>
+          <span id="cartCount" class="absolute -top-1 -right-1 bg-rose-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow">0</span>
+        </button>
+
+        <a href="https://github.com/junaedislamjim1012/myshop" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-gray-900 hover:bg-black text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition shadow-sm hover:shadow">
+          <i class="fab fa-github"></i>
+          <span>Source Code</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-gray-900 via-slate-800 to-emerald-950 text-white py-16 md:py-24 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-semibold mb-6">
+            <i class="fas fa-bolt"></i> Complete Multi-Vendor E-Commerce Platform
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+            Everything You Need For Online Shopping.
+          </h1>
+          <p class="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed max-w-xl">
+            Built with Laravel &amp; MySQL. Packed with courier automation (Pathao, Steadfast, Carrybee), UddoktaPay &amp; bKash gateway, multi-vendor support, and full inventory management.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#products" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-500/30 transition flex items-center gap-2">
+              <i class="fas fa-shopping-basket"></i> Browse Products
+            </a>
+            <a href="https://github.com/junaedislamjim1012/myshop/blob/main/creativedesignbd_myshop3.sql" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-6 py-3.5 rounded-xl backdrop-blur-sm transition flex items-center gap-2">
+              <i class="fas fa-database text-emerald-400"></i> View Database SQL
+            </a>
+          </div>
+
+          <!-- Feature tags -->
+          <div class="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-white/10 text-center sm:text-left">
+            <div>
+              <p class="text-2xl font-bold text-emerald-400">100%</p>
+              <p class="text-xs text-gray-400">Laravel MVC</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-teal-400">MySQL</p>
+              <p class="text-xs text-gray-400">Ready DB Dump</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-emerald-400">BD Pay</p>
+              <p class="text-xs text-gray-400">UddoktaPay / bKash</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Card / Mockup -->
+        <div class="relative">
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                <span class="text-xs text-gray-300 font-mono ml-2">myshop.local</span>
+              </div>
+              <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono">PHP 8.2</span>
+            </div>
+            <div class="space-y-3 font-mono text-xs text-gray-200">
+              <p class="text-emerald-400"># Repository Setup Complete</p>
+              <p><span class="text-sky-400">$</span> git clone https://github.com/junaedislamjim1012/myshop.git</p>
+              <p><span class="text-sky-400">$</span> composer install &amp;&amp; npm install</p>
+              <p><span class="text-sky-400">$</span> mysql -u root myshop &lt; creativedesignbd_myshop3.sql</p>
+              <p><span class="text-sky-400">$</span> php artisan serve</p>
+              <div class="mt-4 p-3 bg-black/40 rounded-lg text-emerald-300">
+                ✓ Local server started on http://localhost:8000
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="py-12 bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold text-gray-900">Featured Categories</h2>
+        <span class="text-sm font-semibold text-emerald-600 hover:text-emerald-700 cursor-pointer">View All <i class="fas fa-arrow-right ml-1"></i></span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-center hover:shadow-md transition cursor-pointer group">
+          <div class="w-12 h-12 mx-auto rounded-full bg-emerald-500 text-white flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+            <i class="fas fa-laptop"></i>
+          </div>
+          <p class="font-semibold text-sm text-gray-800">Electronics</p>
+          <p class="text-xs text-gray-500">Gadgets &amp; Tools</p>
+        </div>
+        <div class="p-4 rounded-xl bg-blue-50 border border-blue-100 text-center hover:shadow-md transition cursor-pointer group">
+          <div class="w-12 h-12 mx-auto rounded-full bg-blue-500 text-white flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+            <i class="fas fa-tshirt"></i>
+          </div>
+          <p class="font-semibold text-sm text-gray-800">Fashion</p>
+          <p class="text-xs text-gray-500">Men &amp; Women</p>
+        </div>
+        <div class="p-4 rounded-xl bg-amber-50 border border-amber-100 text-center hover:shadow-md transition cursor-pointer group">
+          <div class="w-12 h-12 mx-auto rounded-full bg-amber-500 text-white flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <p class="font-semibold text-sm text-gray-800">Smartphones</p>
+          <p class="text-xs text-gray-500">Accessories</p>
+        </div>
+        <div class="p-4 rounded-xl bg-purple-50 border border-purple-100 text-center hover:shadow-md transition cursor-pointer group">
+          <div class="w-12 h-12 mx-auto rounded-full bg-purple-500 text-white flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+            <i class="fas fa-headphones"></i>
+          </div>
+          <p class="font-semibold text-sm text-gray-800">Audio &amp; Sound</p>
+          <p class="text-xs text-gray-500">Headphones &amp; Mics</p>
+        </div>
+        <div class="p-4 rounded-xl bg-rose-50 border border-rose-100 text-center hover:shadow-md transition cursor-pointer group">
+          <div class="w-12 h-12 mx-auto rounded-full bg-rose-500 text-white flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+            <i class="fas fa-home"></i>
+          </div>
+          <p class="font-semibold text-sm text-gray-800">Home Living</p>
+          <p class="text-xs text-gray-500">Decor &amp; Kitchen</p>
+        </div>
+        <div class="p-4 rounded-xl bg-teal-50 border border-teal-100 text-center hover:shadow-md transition cursor-pointer group">
+          <div class="w-12 h-12 mx-auto rounded-full bg-teal-500 text-white flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+            <i class="fas fa-gift"></i>
+          </div>
+          <p class="font-semibold text-sm text-gray-800">Hot Deals</p>
+          <p class="text-xs text-gray-500">Flash Discount</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1">
+    <div class="flex flex-wrap items-center justify-between mb-10 gap-4">
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Popular Products</h2>
+        <p class="text-sm text-gray-500 mt-1">Interactive store catalog demonstration</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-800">
+          <i class="fas fa-shield-alt mr-1"></i> Cash on Delivery Available
+        </span>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Injected via JS -->
+    </div>
+  </section>
+
+  <!-- Deployment & Architecture Guide -->
+  <section id="deployment" class="py-16 bg-white border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Developer Documentation</span>
+        <h2 class="text-3xl font-extrabold text-gray-900 mt-2">How to Run the Full App with Database</h2>
+        <p class="text-gray-600 mt-3 text-sm sm:text-base">
+          GitHub Pages provides this static frontend view. To run the full dynamic PHP backend, follow these easy steps:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- cPanel Guide -->
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center font-bold">
+              <i class="fas fa-server"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900">Deploy on cPanel (Recommended)</h3>
+              <p class="text-xs text-gray-500">Live production hosting in 5 minutes</p>
+            </div>
+          </div>
+          <ol class="list-decimal list-inside space-y-3 text-sm text-gray-700">
+            <li>Download or clone this repository as a ZIP archive.</li>
+            <li>In cPanel <strong>File Manager</strong>, extract the files to your domain directory.</li>
+            <li>Create a MySQL database in <strong>cPanel MySQL Databases</strong>.</li>
+            <li>In <strong>phpMyAdmin</strong>, select your database and import: <br><code class="text-xs bg-gray-200 px-2 py-0.5 rounded text-gray-800 font-mono">creativedesignbd_myshop3.sql</code></li>
+            <li>Rename <code class="text-xs bg-gray-200 px-1 py-0.5 rounded font-mono">.env.example</code> to <code class="text-xs bg-gray-200 px-1 py-0.5 rounded font-mono">.env</code> and set your DB name, user, password, and <code class="text-xs bg-gray-200 px-1 py-0.5 rounded font-mono">APP_URL</code>.</li>
+            <li>Point your domain Document Root to the <code class="text-xs bg-gray-200 px-1 py-0.5 rounded font-mono">public</code> folder.</li>
+          </ol>
+        </div>
+
+        <!-- Local Setup Guide -->
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900">Run on Localhost (Windows / Mac / Linux)</h3>
+              <p class="text-xs text-gray-500">Using XAMPP, Laragon, or Docker</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-xs font-mono bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto">
+            <p><span class="text-emerald-400"># 1. Clone repository</span></p>
+            <p class="text-sky-300">git clone https://github.com/junaedislamjim1012/myshop.git</p>
+            <p class="text-sky-300">cd myshop</p>
+            <p class="mt-2"><span class="text-emerald-400"># 2. Install dependencies</span></p>
+            <p class="text-sky-300">composer install</p>
+            <p class="text-sky-300">npm install &amp;&amp; npm run build</p>
+            <p class="mt-2"><span class="text-emerald-400"># 3. Configure .env &amp; Database</span></p>
+            <p class="text-sky-300">cp .env.example .env</p>
+            <p class="text-sky-300">php artisan key:generate</p>
+            <p class="mt-2"><span class="text-emerald-400"># 4. Import SQL and Start</span></p>
+            <p class="text-sky-300">php artisan storage:link</p>
+            <p class="text-sky-300">php artisan serve</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <span class="text-xl font-bold text-white">MyShop</span>
+          <span class="text-xs text-gray-500 ml-2">© 2026. All rights reserved.</span>
+        </div>
+        <div class="flex items-center gap-6 text-sm">
+          <a href="https://github.com/junaedislamjim1012/myshop" target="_blank" class="hover:text-white transition">
+            <i class="fab fa-github mr-1"></i> Repository
+          </a>
+          <a href="https://github.com/junaedislamjim1012/myshop/blob/main/creativedesignbd_myshop3.sql" target="_blank" class="hover:text-white transition">
+            <i class="fas fa-database mr-1"></i> Database Dump
+          </a>
+          <a href="#products" class="hover:text-white transition">Products</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Drawer -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+    <div onclick="toggleCart()" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"></div>
+    <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+        <div class="p-6 border-b border-gray-200 flex items-center justify-between bg-gray-50">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-shopping-cart text-emerald-600"></i>
+            <h3 class="text-lg font-bold text-gray-900">Your Shopping Cart</h3>
+          </div>
+          <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 p-2">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <div id="cartItems" class="flex-1 overflow-y-auto p-6 space-y-4">
+          <!-- Cart items injected here -->
+        </div>
+
+        <div class="p-6 border-t border-gray-200 bg-gray-50 space-y-4">
+          <div class="flex justify-between items-center text-sm">
+            <span class="text-gray-600">Subtotal:</span>
+            <span id="cartSubtotal" class="font-bold text-lg text-gray-900">৳0</span>
+          </div>
+          <p class="text-xs text-gray-500">Delivery charge calculated during courier checkout.</p>
+          <button onclick="openCheckout()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+            <i class="fas fa-check-circle"></i> Proceed to Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen px-4 py-8">
+      <div onclick="closeCheckout()" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+      <div class="relative bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl z-10">
+        <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-6">
+          <h3 class="text-xl font-bold text-gray-900">Complete Your Order</h3>
+          <button onclick="closeCheckout()" class="text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <form onsubmit="handlePlaceOrder(event)" class="space-y-4 text-sm">
+          <div>
+            <label class="block font-medium text-gray-700 mb-1">Full Name</label>
+            <input type="text" required placeholder="e.g. Junaed Islam" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+          </div>
+
+          <div>
+            <label class="block font-medium text-gray-700 mb-1">Phone Number (Required for Courier)</label>
+            <input type="tel" required placeholder="017XXXXXXXX" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+          </div>
+
+          <div>
+            <label class="block font-medium text-gray-700 mb-1">Delivery Address</label>
+            <textarea required rows="2" placeholder="House, Road, Area, City" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:outline-none"></textarea>
+          </div>
+
+          <!-- Courier Selection -->
+          <div>
+            <label class="block font-medium text-gray-700 mb-1">Select Courier Partner</label>
+            <div class="grid grid-cols-3 gap-2 text-xs text-center font-medium">
+              <label class="border rounded-xl p-2.5 cursor-pointer hover:border-emerald-500 flex flex-col items-center gap-1">
+                <input type="radio" name="courier" value="steadfast" checked class="text-emerald-600">
+                <span>Steadfast</span>
+              </label>
+              <label class="border rounded-xl p-2.5 cursor-pointer hover:border-emerald-500 flex flex-col items-center gap-1">
+                <input type="radio" name="courier" value="pathao" class="text-emerald-600">
+                <span>Pathao</span>
+              </label>
+              <label class="border rounded-xl p-2.5 cursor-pointer hover:border-emerald-500 flex flex-col items-center gap-1">
+                <input type="radio" name="courier" value="redx" class="text-emerald-600">
+                <span>RedX</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Payment Selection -->
+          <div>
+            <label class="block font-medium text-gray-700 mb-1">Payment Method</label>
+            <div class="grid grid-cols-3 gap-2 text-xs text-center font-medium">
+              <label class="border rounded-xl p-2.5 cursor-pointer hover:border-emerald-500 flex flex-col items-center gap-1">
+                <input type="radio" name="payment" value="cod" checked class="text-emerald-600">
+                <span>Cash on Delivery</span>
+              </label>
+              <label class="border rounded-xl p-2.5 cursor-pointer hover:border-emerald-500 flex flex-col items-center gap-1">
+                <input type="radio" name="payment" value="bkash" class="text-emerald-600">
+                <span>bKash Online</span>
+              </label>
+              <label class="border rounded-xl p-2.5 cursor-pointer hover:border-emerald-500 flex flex-col items-center gap-1">
+                <input type="radio" name="payment" value="uddoktapay" class="text-emerald-600">
+                <span>UddoktaPay</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-gray-200">
+            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-lg transition">
+              Confirm Order (Demo)
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sampleProducts = [
+      {
+        id: 1,
+        title: "Ugreen High Speed USB-C Fast Charger & Cable",
+        category: "Gadgets",
+        price: 1250,
+        oldPrice: 1650,
+        image: "./public/uploads/product/1759501857-1740310249-80910-ugreen-ge.webp",
+        rating: 4.8,
+        reviews: 24
+      },
+      {
+        id: 2,
+        title: "Wireless Smart Bluetooth Neckband Headset",
+        category: "Audio",
+        price: 1850,
+        oldPrice: 2400,
+        image: "./public/uploads/product/1759501963-1740309960-sku_08295929-202e-487c-983b-6d657f2ba069.webp",
+        rating: 4.9,
+        reviews: 38
+      },
+      {
+        id: 3,
+        title: "Premium Comfort Cotton T-Shirt Edition",
+        category: "Fashion",
+        price: 750,
+        oldPrice: 1100,
+        image: "./public/uploads/product/1759502165-1757776999-81c9ripib0l._uy1000_.webp",
+        rating: 4.6,
+        reviews: 19
+      },
+      {
+        id: 4,
+        title: "Exclusive Slim Fit Casual Polo Shirt",
+        category: "Fashion",
+        price: 950,
+        oldPrice: 1350,
+        image: "./public/uploads/product/1759502255-1757777751-thofeb23-03549.webp",
+        rating: 4.7,
+        reviews: 31
+      },
+      {
+        id: 5,
+        title: "High Performance Magnetic Phone Car Mount",
+        category: "Accessories",
+        price: 650,
+        oldPrice: 890,
+        image: "./public/uploads/product/1759499529-61nhot+9ffl.jpg",
+        rating: 4.5,
+        reviews: 15
+      },
+      {
+        id: 6,
+        title: "Portable Multi-Angle Desktop Tablet Stand",
+        category: "Electronics",
+        price: 850,
+        oldPrice: 1200,
+        image: "./public/uploads/product/1759502330-1757778001-screenshot-at-sep-13-21-39-24.webp",
+        rating: 4.9,
+        reviews: 42
+      }
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = sampleProducts.map(p => `
+        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition group flex flex-col">
+          <div class="relative overflow-hidden bg-gray-100 aspect-square flex items-center justify-center">
+            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80'">
+            <span class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow">
+              SALE
+            </span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
+                <span>${p.category}</span>
+                <span class="text-amber-500 font-semibold"><i class="fas fa-star text-xs mr-1"></i>${p.rating} (${p.reviews})</span>
+              </div>
+              <h3 class="font-bold text-gray-900 text-sm line-clamp-2 mb-2 group-hover:text-emerald-600 transition">${p.title}</h3>
+            </div>
+            <div>
+              <div class="flex items-baseline gap-2 mb-4">
+                <span class="text-xl font-extrabold text-emerald-700">৳${p.price}</span>
+                <span class="text-xs text-gray-400 line-through">৳${p.oldPrice}</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="addToCart(${p.id})" class="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 border border-emerald-200">
+                  <i class="fas fa-cart-plus"></i> Add
+                </button>
+                <button onclick="buyNow(${p.id})" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(productId) {
+      const prod = sampleProducts.find(p => p.id === productId);
+      if (!prod) return;
+      const existing = cart.find(c => c.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...prod, qty: 1 });
+      }
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    function buyNow(productId) {
+      addToCart(productId);
+      openCheckout();
+    }
+
+    function updateCartUI() {
+      const countEl = document.getElementById('cartCount');
+      const itemsEl = document.getElementById('cartItems');
+      const subtotalEl = document.getElementById('cartSubtotal');
+
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      countEl.innerText = totalQty;
+
+      if (cart.length === 0) {
+        itemsEl.innerHTML = `
+          <div class="text-center py-12 text-gray-400">
+            <i class="fas fa-shopping-basket text-4xl mb-3"></i>
+            <p class="text-sm font-medium">Your cart is empty</p>
+          </div>
+        `;
+        subtotalEl.innerText = '৳0';
+        return;
+      }
+
+      itemsEl.innerHTML = cart.map((item, idx) => `
+        <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-gray-100">
+          <img src="${item.image}" alt="${item.title}" class="w-14 h-14 object-cover rounded-lg bg-white" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&auto=format&fit=crop'">
+          <div class="flex-1 min-w-0">
+            <h4 class="font-semibold text-xs text-gray-900 truncate">${item.title}</h4>
+            <p class="text-xs font-bold text-emerald-600 mt-0.5">৳${item.price}</p>
+            <div class="flex items-center gap-2 mt-2">
+              <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 rounded bg-white border border-gray-200 text-xs flex items-center justify-center font-bold text-gray-600 hover:bg-gray-100">-</button>
+              <span class="text-xs font-bold text-gray-800">${item.qty}</span>
+              <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 rounded bg-white border border-gray-200 text-xs flex items-center justify-center font-bold text-gray-600 hover:bg-gray-100">+</button>
+            </div>
+          </div>
+          <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-rose-500 p-1.5">
+            <i class="fas fa-trash-alt text-xs"></i>
+          </button>
+        </div>
+      `).join('');
+
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      subtotalEl.innerText = '৳' + total.toLocaleString();
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(c => c.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(c => c.id !== id);
+      }
+      updateCartUI();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(c => c.id !== id);
+      updateCartUI();
+    }
+
+    function toggleCart(openOnly = false) {
+      const drawer = document.getElementById('cartDrawer');
+      if (openOnly) {
+        drawer.classList.remove('hidden');
+      } else {
+        drawer.classList.toggle('hidden');
+      }
+    }
+
+    function openCheckout() {
+      if (cart.length === 0) {
+        alert('Please add at least one product to cart!');
+        return;
+      }
+      document.getElementById('cartDrawer').classList.add('hidden');
+      document.getElementById('checkoutModal').classList.remove('hidden');
+    }
+
+    function closeCheckout() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    function handlePlaceOrder(e) {
+      e.preventDefault();
+      alert('Order placed successfully (Demo Mode)! In live production on cPanel, this order will be saved into the MySQL database with courier tracking.');
+      cart = [];
+      updateCartUI();
+      closeCheckout();
+    }
+
+    // Initialize
+    renderProducts();
+  </script>
+</body>
+</html>
